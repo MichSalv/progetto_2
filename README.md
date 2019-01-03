@@ -1,6 +1,6 @@
 # Ingegneria Algoritmi 16/19
 ### Secondo progetto
-	Traccia n°2
+Traccia n°2
 
 * Mettere tutti i nodi in una struttura dati:  unionFind * COME??????
 
