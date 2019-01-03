@@ -1,4 +1,3 @@
-# progetto_2
-Progetto Ing.Algoritmi 18/19
-# prima modifica
-# SECONDA MODIFICA SOLO SU Branch2
+# Ingegneria Algoritmi 18/19
+# Secondo progetto
+	Traccia n°2
