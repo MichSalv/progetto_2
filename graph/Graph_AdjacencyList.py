@@ -103,9 +103,15 @@ class GraphAdjacencyList(GraphBase):
         :param weight: the (optional) edge weight (floating-point).
         :return: the created edge, if created; None, otherwise.
         """
+
+        if self.isAdj(tail, head):
+            return
+
         # if tail and head exist, add the entry into the adjacency list
-        if tail in self.nodes and head in self.nodes:  # TODO overwrite if edge already exists
+        if tail in self.nodes and head in self.nodes:
             self.adj[tail].addAsLast(head)
+            return Edge(tail, head, None)
+
 
     def deleteEdge(self, tail, head):
         """
@@ -231,50 +237,53 @@ if __name__ == "__main__":
                 graph.print()
                 print("---")
 
-    # num nodes/edges
-    print("Num Nodes:", graph.numNodes())
-    print("Num Edges:", graph.numEdges())
-
-    # degree
-    for node in nodes:
-        print("Degree node {}: {}".format(node.id, graph.deg(node.id)))
-
-    # get specific node
-    for node in nodes:
-        print("Node {}: {}".format(node.id, graph.getNode(node.id)))
-
-    # get all nodes
-    print("Nodes:", [str(i) for i in graph.getNodes()])
-
-    # get specific edge
-    for node_src in nodes:
-        for node_dst in nodes:
-            print("Edge {},{}: {}".format(node_src.id, node_dst.id, graph.getEdge(node_src.id, node_dst.id)))
-
-    # get all edges
-    print("Edges:", [str(i) for i in graph.getEdges()])
-
-    # execute a generic search
-    for node in nodes:
-        tree = graph.genericSearch(node.id)
-        s = tree.BFS()
-        print("Generic Search with root {}: {}".format(node.id,
-                                               [str(item) for item in s]))
-
-    # execute a BFS
-    for node in nodes:
-        s = graph.bfs(node.id)
-        print("BFS with root {}: {}".format(node.id,
-                                               [str(item) for item in s]))
-
+    print("PROVA")
+    print(graph.getAdj(nodes[0].id))
+    #
+    # # num nodes/edges
+    # print("Num Nodes:", graph.numNodes())
+    # print("Num Edges:", graph.numEdges())
+    #
+    # # degree
+    # for node in nodes:
+    #     print("Degree node {}: {}".format(node.id, graph.deg(node.id)))
+    #
+    # # get specific node
+    # for node in nodes:
+    #     print("Node {}: {}".format(node.id, graph.getNode(node.id)))
+    #
+    # # get all nodes
+    # print("Nodes:", [str(i) for i in graph.getNodes()])
+    #
+    # # get specific edge
+    # for node_src in nodes:
+    #     for node_dst in nodes:
+    #         print("Edge {},{}: {}".format(node_src.id, node_dst.id, graph.getEdge(node_src.id, node_dst.id)))
+    #
+    # # get all edges
+    # print("Edges:", [str(i) for i in graph.getEdges()])
+    #
+    # # execute a generic search
+    # for node in nodes:
+    #     tree = graph.genericSearch(node.id)
+    #     s = tree.BFS()
+    #     print("Generic Search with root {}: {}".format(node.id,
+    #                                            [str(item) for item in s]))
+    #
+    # # execute a BFS
+    # for node in nodes:
+    #     s = graph.bfs(node.id)
+    #     print("BFS with root {}: {}".format(node.id,
+    #                                            [str(item) for item in s]))
+    #
     # execute a DFS
     for node in nodes:
-        s = graph.dfs(node.id)
-        print("DFS with root {}: {}".format(node.id,
-                                               [str(item) for item in s]))
-
-    # remove all nodes
-    for node in nodes:
-        graph.deleteNode(node.id)
-        print("Node removed:", node.id)
-        graph.print()
+         s = graph.dfs(node.id)
+         print("DFS with root {}: {}".format(node.id,
+                                                [str(item) for item in s]))
+    #
+    # # remove all nodes
+    # for node in nodes:
+    #     graph.deleteNode(node.id)
+    #     print("Node removed:", node.id)
+    #     graph.print()
