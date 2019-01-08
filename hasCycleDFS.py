@@ -1,10 +1,14 @@
-from hasCycleUF import *
-from unionfind.quickUnion import *
 from graphUtility import *
 from datastruct.Stack import PilaArrayList as Stack
 
 def hasCycleDFS(graph):
+    '''
+
+    :param graph
+    :return: 1 if cycle detected, 0 otherwise
+    '''
     rootId = graph.nodes[0].id          # poichè connesso e non orientato va bene partire da qualsiasi nodo
+
     if rootId not in graph.nodes:
         return None
 
@@ -14,56 +18,39 @@ def hasCycleDFS(graph):
     # queue initialization
     s = Stack()
     s.push(rootId)
+    stack_Copy = []
+    explored = []       # nodes already explored
+    stack_Copy.append(rootId)
 
-    explored = [] # nodes already explored
-
-    while not s.isEmpty():  # while there are nodes to explore ...
-        node = s.pop()  # get the node from the stack
-        # print("node: ", node)
-        # # print("adj_node: ", adj_node)
-        # print("explored: ", explored)
-        # print("-------")
-        if node in explored:
-            return 1
-
+    while not s.isEmpty():
+        node = s.pop()
+        stack_Copy.remove(node)
         explored.append(node)
 
         for adj_node in graph.getAdj(node):
+
+            if adj_node in stack_Copy and adj_node not in explored:
+                return 1
+
             if adj_node not in explored:
                 s.push(adj_node)
+                stack_Copy.append(adj_node)
+
         dfs_nodes.append(node)
-
-        # for adj_node in graph.getAdj(node):
-        #     print("node: ", node)
-        #     print("adj_node: ", adj_node)
-        #     print("explored: ", explored)
-        #     print("prevVisited: ", prevVisited)
-        #     print("-------")
-        #
-        #     if adj_node != prevVisited and adj_node in explored:
-        #
-        #         print("ciclo")
-        #         return 1
-
-        # s.push(adj_node)
-        # prevVisited = node
-
-        # dfs_nodes.append(node)
-
     return 0
 
 
 def test():
 
     for i in range(100):
-        g = createGraph(1)
+        g = createGraph(10, True)
         if isConnected(g):
             if not hasCycleDFS(g):
                 print("Grafo numero: ", i, "errore \n", g.print())
                 return
 
 
-
-
 if __name__ == "__main__":
     test()
+    # g = createGraph(10)
+    # print(hasCycleDFS(g))
