@@ -2,7 +2,7 @@ from hasCycleDFS import *
 from hasCycleUF import *
 from graphUtility import *
 from demo.writeOnCsv import *
-
+from time import time
 
 def timer(func):
     """
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     for n in range(num_nodes,max_nodes,step):
         for x in range(num_times):
-            g = createGraph(cycle,n)
+            g = createGraph(n, cycle)
 
             num_edges = g.numEdges()/2
 
