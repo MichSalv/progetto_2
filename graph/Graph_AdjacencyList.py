@@ -212,7 +212,7 @@ if __name__ == "__main__":
 
     # add nodes
     nodes = []
-    for i in range(3):
+    for i in range(10):
         node = graph.addNode(i)
         print("Node inserted:", node)
         nodes.append(node)
@@ -279,6 +279,7 @@ if __name__ == "__main__":
     # execute a DFS
     for node in nodes:
          s = graph.dfs(node.id)
+         print(s)
          print("DFS with root {}: {}".format(node.id,
                                                 [str(item) for item in s]))
     #
