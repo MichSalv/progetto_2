@@ -1,0 +1,8 @@
+-- Perchè Djikstra non funziona con costi negativi? 
+	funziona con costi negativi solo se partono dalla sorgente. 
+
+
+-- 3feb12 domanda 3 punto d,e,f
+
+-- controlalre quali visite generano quali archi
+
