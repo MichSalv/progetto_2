@@ -1,7 +1,7 @@
 import random
 from graph.Graph_AdjacencyList import *
 
-def createGraph(numNodes, numEdge, cycle = False):
+def createGraph(numNodes, numEdges, cycle = False):
     '''
     Generatore di grafi casualmente connessi o non connessi
     :param cycle: True or False
@@ -18,10 +18,10 @@ def createGraph(numNodes, numEdge, cycle = False):
 
     minEdge = numNodes -1
     maxEdge = (numNodes*(numNodes-1))/2
-    if cycle:
-        numEdges = random.randint(numNodes, maxEdge)          # numNodes al posto di minEdges per non ricadere sul grafo aciclico
-    else:
-        numEdges = minEdge                                     # Un arco senza cicli connesso ha esattamente n-1 archi
+    # if cycle:
+    #     numEdges = random.randint(numNodes, maxEdge)          # numNodes al posto di minEdges per non ricadere sul grafo aciclico
+    # else:
+    #     numEdges = minEdge                                     # Un arco senza cicli connesso ha esattamente n-1 archi
 
     while(numEdges>0):
 
