@@ -1,7 +1,7 @@
 import random
 from graph.Graph_AdjacencyList import *
 
-def createGraph(numNodes, cycle = False):
+def createGraph(numNodes, numEdge, cycle = False):
     '''
     Generatore di grafi casualmente connessi o non connessi
     :param cycle: True or False

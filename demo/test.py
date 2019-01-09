@@ -17,9 +17,9 @@ def timer(func):
         print(f'Function {func.__name__} with Graph: n:{args[0]}  m:{args[1]}  cycle:{args[2]}  \ntook {elapsed} seconds')
 
         if(func.__name__=="detectCycleDFS"):
-            write("../results/detectCycleDFS.csv", [[args[0], elapsed]])
+            write("../results/detectCycleDFS.csv", [[args[1], elapsed]])
         if (func.__name__ == "detectCycleUF"):
-            write("../results/detectCycleUF.csv", [[args[0], elapsed]])
+            write("../results/detectCycleUF.csv", [[args[1], elapsed]])
         print("-----------")
         return value
     return wrapping_function
@@ -44,18 +44,23 @@ def detectCycleUF(num_nodes,_num_edges,cycle):
 
 
 if __name__ == "__main__":
-    num_times = 1
-    num_nodes = 200
-    max_nodes = 210
-    step=10
+
+
+
+    numNodes = 50
+    maxEdges = (numNodes*(numNodes-1))//2
     cycle = True
+    steps = 50
 
-    for n in range(num_nodes,max_nodes,step):
-        for x in range(num_times):
-            g = createGraph(n, cycle)
+    if not cycle:
+        numEdges = numNodes -1
+        detectCycleUF(numNodes, numEdges, cycle)
+        detectCycleDFS(numNodes, numEdges, cycle)
 
-            num_edges = g.numEdges()/2
 
-            detectCycleDFS(n,num_edges,cycle)
-            detectCycleUF(n,num_edges,cycle)
-
+    else:
+        for numEdges in range(numNodes, maxEdges, steps):
+            g = createGraph(numNodes, numEdges, cycle)
+            if isConnected(g):
+                detectCycleDFS(numNodes, numEdges, cycle)
+                detectCycleUF(numNodes, numEdges, cycle)
