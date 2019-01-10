@@ -17,9 +17,9 @@ def timer(func):
         print(f'Function {func.__name__} with Graph: n:{args[0]}  m:{args[1]}  cycle:{args[2]}  \ntook {elapsed} seconds')
 
         if(func.__name__=="detectCycleDFS"):
-            write("../results/detectCycleDFS.csv", [[args[1], elapsed]])
+            write("../results/detectCycleDFS_"+str(args[0])+"_"+str(args[2])+".csv", [[args[1], elapsed]])
         if (func.__name__ == "detectCycleUF"):
-            write("../results/detectCycleUF.csv", [[args[1], elapsed]])
+            write("../results/detectCycleUF_"+str(args[0])+"_"+str(+args[2])+".csv", [[args[1], elapsed]])
         print("-----------")
         return value
     return wrapping_function
@@ -49,11 +49,12 @@ if __name__ == "__main__":
 
     numNodes = 50
     maxEdges = (numNodes*(numNodes-1))//2
-    cycle = True
+    cycle = False
     steps = 50
 
     if not cycle:
         numEdges = numNodes -1
+        g = createGraph(numNodes, numEdges, cycle)
         detectCycleUF(numNodes, numEdges, cycle)
         detectCycleDFS(numNodes, numEdges, cycle)
 
