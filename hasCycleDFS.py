@@ -3,7 +3,6 @@ from datastruct.Stack import PilaArrayList as Stack
 
 def hasCycleDFS(graph):
     '''
-
     :param graph
     :return: 1 if cycle detected, 0 otherwise
     '''
@@ -20,7 +19,7 @@ def hasCycleDFS(graph):
     s.push(rootId)
     stack_Copy = []
     explored = []       # nodes already explored
-    stack_Copy.append(rootId)
+    stack_Copy.append(rootId)   # copia dello stack usato per verificare l'esistenza di un arco all'indietro nella dfs
 
     while not s.isEmpty():
         node = s.pop()
@@ -29,6 +28,7 @@ def hasCycleDFS(graph):
 
         for adj_node in graph.getAdj(node):
 
+            # verifica esistenza ciclo
             if adj_node in stack_Copy and adj_node not in explored:
                 return 1
 
@@ -51,6 +51,23 @@ def test():
 
 
 if __name__ == "__main__":
-    test()
-    # g = createGraph(10)
-    # print(hasCycleDFS(g))
+    # test()
+    # g = createGraph(10, 9, True)
+    # g.print()
+    g = GraphAdjacencyList()
+    g.addNode(0)
+    g.addNode(1)
+    g.addNode(2)
+    g.addNode(3)
+    g.addNode(4)
+    g.insertEdge(0,2)
+    g.insertEdge(2,0)
+    g.insertEdge(0,1)
+    g.insertEdge(1,0)
+    g.insertEdge(1,3)
+    g.insertEdge(3,1)
+    g.insertEdge(3,4)
+    g.insertEdge(4,3)
+    g.insertEdge(4,1)
+    g.insertEdge(1,4)
+    hasCycleDFS(g)

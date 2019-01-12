@@ -1,5 +1,6 @@
-from unionfind import quickUnion, quickFind
-from graph.ITERATORE import edgeIterator
+from unionfind import quickFind
+from unionfind import quickUnion
+from graphIterator import edgeIterator
 from graphUtility import *
 
 
@@ -10,33 +11,37 @@ def hasCycleUf(graph):
     :return: 0 if no cycle detect, 1 otherwise
     '''
 
-    uf = quickFind.QuickFindBalanced()                                            ## meglio con pathSplitting
-                                                                    ## quickUnion meglio di quickFind, facciamo molte più union che find???
+    uf = quickFind.QuickFindBalanced()                              # scelto quickFind bilanciato, effettuiamo 2 find,ed 1 union per ogni arco
+
     for node in graph.getNodes():
         uf.makeSet(node.id)
 
-    iterator = edgeIterator(graph.getEdges())
+    iterator = edgeIterator(graph.getEdges())                       # Scandisco tutti gli archi non ancora visitati implementando un iteratore
 
-    while True:                              # Scandisco tutti gli archi non ancora visitati implementando un iteratore
+    while True:
         try:
             edge = next(iterator)
             ufHead = uf.nodes[edge.head]
             ufTail = uf.nodes[edge.tail]
 
-            if uf.find(ufTail) == uf.find(ufHead):
+            findRootTail = uf.findRoot(ufTail)
+            findRootHead = uf.findRoot(ufHead)
+
+
+            if findRootTail == findRootHead:
                 return 1
 
             else:
-                uf.union(uf.findRoot(ufTail), uf.findRoot(ufHead))
+                uf.union(findRootTail, findRootHead)
 
 
         except StopIteration:
             break;
-
     return 0
 
-def test():
 
+
+def test():
     for i in range(100):
         g = createGraph()
         if isConnected(g):

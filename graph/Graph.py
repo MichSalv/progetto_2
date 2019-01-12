@@ -316,7 +316,8 @@ class GraphBase(ABC):
 
         while not s.isEmpty():  # while there are nodes to explore ...
             node = s.pop()  # get the node from the stack
-            explored.add(node)  # mark the node as explored
+            if node not in explored:
+                explored.add(node)  # mark the node as explored
             # add all adjacent unexplored nodes to the stack
             for adj_node in self.getAdj(node):
                 if adj_node not in explored:
