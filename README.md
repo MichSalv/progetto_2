@@ -11,3 +11,9 @@ Traccia n°2
 
 -- sab 5 Gennaio:
 	hasCycleUF --> c'è una funzione per provare a connettere solo parte del grafo, randomico
+
+
+
+
+-- Più archi hai più cicli hai, meno tempo occorre per trovare il primo
+
