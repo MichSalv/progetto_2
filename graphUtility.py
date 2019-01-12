@@ -5,6 +5,7 @@ def createGraph(numNodes, numEdges, cycle = False):
     '''
     Generatore di grafi casualmente connessi o non connessi
     :param cycle: True or False
+    :param numEdges: numero archi del grafo
     :param numNodes: numero nodi del grafo
     :return: grafo
     '''
@@ -13,15 +14,6 @@ def createGraph(numNodes, numEdges, cycle = False):
     for i in range(numNodes):
         node = graph.addNode(i)
         nodes.append(node)
-
-
-
-    minEdge = numNodes -1
-    maxEdge = (numNodes*(numNodes-1))/2
-    # if cycle:
-    #     numEdges = random.randint(numNodes, maxEdge)          # numNodes al posto di minEdges per non ricadere sul grafo aciclico
-    # else:
-    #     numEdges = minEdge                                     # Un arco senza cicli connesso ha esattamente n-1 archi
 
     while(numEdges>0):
 
@@ -33,12 +25,12 @@ def createGraph(numNodes, numEdges, cycle = False):
                     bfsList = graph.bfs(node_1.id)
 
                     if node_2.id not in bfsList:
-                        new_node = graph.insertEdge(node_1.id, node_2.id)          # condizione che verifica se sono adiacenti inserita nel metodo insertEdge
+                        new_node = graph.insertEdge(node_1.id, node_2.id)          # condizione che verifica se sono adiacenti inserita nel metodo insertEdge!
                         if new_node is not None:
                             graph.insertEdge(node_2.id, node_1.id)
                             numEdges -= 1
                 else:
-                    new_node = graph.insertEdge(node_1.id,node_2.id)                # condizione che verifica se sono adiacenti inserita nel metodo insertEdge
+                    new_node = graph.insertEdge(node_1.id,node_2.id)                # condizione che verifica se sono adiacenti inserita nel metodo insertEdge!
                     if new_node is not None:
                         graph.insertEdge(node_2.id, node_1.id)
                         numEdges -= 1
@@ -48,8 +40,7 @@ def createGraph(numNodes, numEdges, cycle = False):
 def isConnected(graph):
     '''
     funzione ausiliaria che determina se un grafo è connesso o meno
-
-    :param graph
+    :param graph: grafo
     :return: 1 if graph is connected, 0 otherwise
     '''
     x = graph.dfs(graph.nodes[0].id)

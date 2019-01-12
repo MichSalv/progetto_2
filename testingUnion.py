@@ -1,5 +1,6 @@
 from time import time
 from hasCycleUF import *
+from unionfind import quickUnion
 
 
 def hasCycleUfTest(graph, type):
@@ -41,7 +42,7 @@ def hasCycleUfTest(graph, type):
 
 if __name__ == "__main__":
 
-    g = createGraph(200, 1)
+    g = createGraph(200,400,1)
     # g.print()
     print("QUICKUNIONBALANCED")
     start = time()
